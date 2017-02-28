@@ -1,0 +1,161 @@
+<html>
+	<head>
+		<title>
+			Musica
+		</title>
+		<link href="CSS.css" rel="stylesheet" type="text/css">
+		<script language="javascript" type="text/javascript" src="jquery-1.3.2.min.js"></script>
+	</head>
+	<body class="sfondo">
+	<center>
+		<div id="titolo">
+		</div>
+		<div id="tabella">
+			<table>
+				<tr>
+					<td class="home" div id="celle"> <a div id="link" href="homepage.html"> home </a> </div> </div> </td>
+					<td class="home" div id="celle"> <a div id="link" href="galleria.html"> galleria </div> </div> </td>
+					<td class="home" div id="celle"> <a div id="link" href="strumenti.html"> strumenti </div></div> </td>
+					<td class="home" div id="celle1"> <a div id="link1" href="form.html"> form </a> </div> </td>
+				</tr>
+			</table>
+		</div>
+		<div id="testo">
+			<form name="richiesta" id="modulo">
+				<table>
+					<tr>	
+			 			<td id="form"> Nome: </div></td>
+					</tr>
+					<tr>
+			 			<td><input type="text" name="nome" style="width: 300px" ><br><br></td>
+					
+					</tr>
+					<tr>	
+		 				<td div id="form"> Cognome: </div></td>
+					</tr>
+					<tr>
+		 				<td><input type="text" name="cognome" style="width: 300px" ><br><br></td>
+					</tr>
+					<tr>	
+		 				<td div id="form"> Data di nascita: </div></td>
+					</tr>
+					<tr>
+		 				<td><input type="text" name="data" style="width: 300px" value=gg/mm/aaaa /><br><br></td>
+					</tr>
+					<tr>
+  						<td div id="form"> Gruppo musicale preferito: </div> <br> </td>
+					</tr>
+					<tr>
+ 						<td> 
+							<select name="gruppo" id="gruppo">
+								<option id="gruppo"> </option>
+   								<option>  Coldplay </option>
+   								<option> U2  </option>
+								<option> Green Day  </option>
+								<option> ACDC  </option>
+								<option> Pink Floyd </option> 
+  							</select>
+						<br> <br></td> 
+					</tr>
+					<tr>
+						<td div id="form"> Aggiunta opzione tendina: </td>
+					</tr>
+					<tr>
+						<td> <input type="text" name="aggiunta"></td>
+						<td> <input type="button" value="add option" onClick="aggiungiVoce()"> </td>
+					</tr>
+				<tr>
+				<td>  <br> <br><input type="reset" value="Reset"> </td>
+		 		<td> <br> <br> <input type="button" value="Save" style="float:right" onClick="controllo()"></td>
+				</tr>
+				</table>
+				</form>
+				<br>
+				<br>
+				<table id="demo" border="3" class="musica">	
+				</table>
+				<br>
+		</div>
+		<div id="copyright">
+			© 2017 sito web All Rights Reserved. Designed & Developed by Battani Gabriele
+		</div>
+	</center>
+	<script type="text/javascript">
+	function controllo()
+	{
+		var nome=document.richiesta.nome.value;
+		var cognome=document.richiesta.cognome.value;
+		var data=document.richiesta.data.value;
+		var gruppo=document.richiesta.gruppo.value;
+		var espressione = /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/;
+		tro=true;
+		if ((nome=="") || (nome == "undefined"))
+		{
+			alert("Il campo Nome e' vuoto");
+			tro=false;
+		}
+		if ((cognome=="") || (nome == "undefined"))
+		{
+			alert("Il campo cognome e' vuoto");
+			tro=false;
+		}
+		if((data=="") || (nome == "undefined"))
+		{
+			alert("Il campo data e' vuoto");
+			tro=false;
+		}
+		else if (!espressione.test(data))
+		{
+			tro=false;
+			alert("la data da lei inserita e' sbagliata");
+		}
+		if((gruppo=="") || (gruppo=="undefined"))
+		{
+			alert("non ha selezionato nessun gruppo musicale preferito");
+			tro=false;
+		}
+		if(tro==true)
+		{
+			
+			alert("tutti i campi sono stati inseriti in modo corretto");
+    			var table = document.getElementById("demo");
+    			var row = table.insertRow(0);
+    			var cell1 = row.insertCell(0);
+    			var cell2 = row.insertCell(1);
+    			cell1.innerHTML = "Nome :";
+    			cell2.innerHTML = nome;
+			var row = table.insertRow(1);
+    			var cell1 = row.insertCell(0);
+    			var cell2 = row.insertCell(1);
+    			cell1.innerHTML = "Cognome :";
+    			cell2.innerHTML = cognome;
+			var row = table.insertRow(2);
+    			var cell1 = row.insertCell(0);
+    			var cell2 = row.insertCell(1);
+    			cell1.innerHTML = "Data di nascita :";
+    			cell2.innerHTML = data;
+			var row = table.insertRow(3);
+    			var cell1 = row.insertCell(0);
+    			var cell2 = row.insertCell(1);
+    			cell1.innerHTML = "Gruppo musicale preferito :";
+    			cell2.innerHTML = gruppo;
+		}
+	}
+	function aggiungiVoce()
+	{
+		var aggiunta=document.richiesta.aggiunta.value;
+		if((aggiunta=="") || (aggiunta=="undefined"))
+		{
+			alert("il campo add option e' vuoto");
+		}
+		else{
+				
+			var x = document.getElementById("gruppo");
+			var option = document.createElement("option");
+			option.text = aggiunta;
+			x.add(option);
+		}	
+	}	
+	</script>
+	</body>
+</html>
