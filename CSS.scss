@@ -18,42 +18,43 @@ body.sfondo{
 	width:57.5%;
 	padding:15px;
 }
-#celle{
+@mixin baseCelle($bgColor){
 	text-align:center;
-	font-family:Arial Black;
-	color:white;
 	padding:10px;
 	content:15px;
 	width:130px;
+	&:hover{
+		background-color:#666666;
+		border-bottom-style:solid;
+	}	
+	color:$bgColor;
+}
+#celle{
+	@include baseCelle(white);
 }
 #celle1{
-    	text-align:center;
-	font-family:Arial Black;
-	color:yellow;
-	padding:10px;
-	content:15px;
-	width:130px;
+	@include baseCelle(yellow);
 	border-bottom-style:solid;
 	border-color:yellow;
 }
-#link{
+@mixin baseLink($bgColor){
 	text-decoration:none;
-	color:white;
+	color:$bgColor;
 }
 #link1{
-	text-decoration:none;
-	color:yellow;
+	@include baseLink(yellow);
 }
-td.home:hover{
-	background-color:#666666;
-	border-bottom-style:solid;
+#link{
+	@include baseLink(white);
 }	
 #testo{
 	width:55%;
 	padding:30px;
 	background-color:#FFEECC;
-	border-color:black;
-	border-width:5px;
+	border:{
+		color:black;
+		width:5px;
+	}
 }
 #copyright{
 	background-color:black;
@@ -67,9 +68,11 @@ img.imm{
 	border: 3px solid black;
 }
 #form{
-	font-weight:bold;
-	font-size:20px;
-	font-style:italic;
+	font:{
+		weight:bold;
+		size:20px;
+		style:italic;
+	}
 }
 #zoom{
 	width:500px;
@@ -91,9 +94,8 @@ table.musica{
 	text-align:center;
 }
 #link_strum{
-	color:blue;
+	@include baseLink(blue);
 	font-style:italic;
-	text-decoration:none;
 }
 	
 

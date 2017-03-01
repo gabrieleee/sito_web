@@ -20,33 +20,33 @@ body.sfondo {
 
 #celle {
   text-align: center;
-  font-family: Arial Black;
-  color: white;
-  padding: 10px;
-  content: 15px;
-  width: 130px; }
-
-#celle1 {
-  text-align: center;
-  font-family: Arial Black;
-  color: yellow;
   padding: 10px;
   content: 15px;
   width: 130px;
+  color: white; }
+  #celle:hover {
+    background-color: #666666;
+    border-bottom-style: solid; }
+
+#celle1 {
+  text-align: center;
+  padding: 10px;
+  content: 15px;
+  width: 130px;
+  color: yellow;
   border-bottom-style: solid;
   border-color: yellow; }
-
-#link {
-  text-decoration: none;
-  color: white; }
+  #celle1:hover {
+    background-color: #666666;
+    border-bottom-style: solid; }
 
 #link1 {
   text-decoration: none;
   color: yellow; }
 
-td.home:hover {
-  background-color: #666666;
-  border-bottom-style: solid; }
+#link {
+  text-decoration: none;
+  color: white; }
 
 #testo {
   width: 55%;
@@ -91,8 +91,8 @@ table.musica {
   text-align: center; }
 
 #link_strum {
+  text-decoration: none;
   color: blue;
-  font-style: italic;
-  text-decoration: none; }
+  font-style: italic; }
 
 /*# sourceMappingURL=CSS.css.map */
