@@ -118,27 +118,11 @@ crossorigin="anonymous">
 		}
 		if(tro==true)
 		{
-    		 	var table = document.getElementById("demo");
-    		 	var row = table.insertRow(0);
-    		 	var cell1 = row.insertCell(0);
-    		 	var cell2 = row.insertCell(1);
-    		 	cell1.innerHTML = "Nome :";
-    		 	cell2.innerHTML = nome;
-		 	var row = table.insertRow(1);
-    		 	var cell1 = row.insertCell(0);
-    		 	var cell2 = row.insertCell(1);
-    		 	cell1.innerHTML = "Cognome :";
-    		 	cell2.innerHTML = cognome;
-		 	var row = table.insertRow(2);
-    		 	var cell1 = row.insertCell(0);
-    		 	var cell2 = row.insertCell(1);
-    		 	cell1.innerHTML = "Data di nascita :";
-    		 	cell2.innerHTML = data;
-		 	var row = table.insertRow(3);
-    		 	var cell1 = row.insertCell(0);
-    		 	var cell2 = row.insertCell(1);
-    		 	cell1.innerHTML = "Gruppo musicale preferito :";
-    		 	cell2.innerHTML = gruppo;
+			var table=$("#demo");
+			table.append("<tr> <td id='agg'> Nome  </td> <td id='agg'>"+nome+"</td> </tr>");
+			table.append("<tr> <td id='agg'> Cognome </td> <td id='agg'>"+cognome+"</td> </tr>");
+			table.append("<tr> <td id='agg'> Data </td> <td id='agg'>"+data+"</td> </tr>");
+			table.append("<tr> <td id='agg'> Gruppo  musicale preferito </td> <td id='agg'>"+gruppo+"</td> </tr>");
 		}
 	})        
 	$("#button").click(function()
@@ -150,7 +134,7 @@ crossorigin="anonymous">
 		}
 		else{	
 			var x=$("#gruppo");
-			x.append(new Option(aggiunta));
+			x.append("<option>"+aggiunta+"</option>");
 			alert("il gruppo musicale e' stato aggiunto alle opzioni");					
 		}	
 	})	

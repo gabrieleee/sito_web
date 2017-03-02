@@ -23,28 +23,28 @@
 		<div id="testo">
 		<h2> Strumenti musicali </h2>
 			<A NAME="imm"> </a>
-				<img div id="zoom" src="immagini/strumenti.jpg">
-				<br>
-				<hr>
-			<A HREF="#imm"> <img div id="foto" src="immagini/pianoforte.jpg" onClick="cambiare('immagini/pianoforte.jpg')" title="Pianoforte"></a>
-			<A HREF="#imm"> <img div id="foto" src="immagini/chitarra.jpg" onClick="cambiare('immagini/chitarra.jpg')" title="Chitarra"></a>
-			<A HREF="#imm"> <img div id="foto" src="immagini/triangolo.jpg" onClick="cambiare('immagini/triangolo.jpg')" title="Triangolo"></a>
-			<A HREF="#imm"> <img div id="foto" src="immagini/tromba.jpg" onClick="cambiare('immagini/tromba.jpg')" title="Tromba"></a>
-			<A HREF="#imm"> <img div id="foto" src="immagini/batteria.jpg" onClick="cambiare('immagini/batteria.jpg')" title="Batteria"></a>
-			<A HREF="#imm"> <img div id="foto" src="immagini/sax.jpg" onClick="cambiare('immagini/sax.jpg')" title="Sax"></a>
-			<A HREF="#imm"> <img div id="foto" src="immagini/violino.jpg" onClick="cambiare('immagini/violino.jpg')" title="Batteria"></a>
+			<img id="zoom" src="immagini/strumenti.jpg">
+			<br>
+			<hr>
+			<h3> Clicca sull' immagine per ingrandirla </h3>
+			<br>
+			<img class="f" id="foto" src="immagini/pianoforte.jpg"  title="Pianoforte">
+			<img class="f" id="foto" src="immagini/chitarra.jpg"  title="Chitarra">
+			<img class="f" id="foto" src="immagini/triangolo.jpg"  title="Triangolo">
+			<img class="f" id="foto" src="immagini/tromba.jpg"  title="Tromba">
+			<img class="f" id="foto" src="immagini/batteria.jpg"  title="Batteria">
+			<img class="f" id="foto" src="immagini/sax.jpg"  title="Sax">
+			<img class="f" id="foto" src="immagini/violino.jpg" title="Batteria">
 		</div>
 		<div id="copyright">
 			© 2017 sito web All Rights Reserved. Designed & Developed by Battani Gabriele
 		</div>
 		<script type="text/javascript">
-			/*function cambiare(immagine) 
+
+			$(".f").click(function()
 			{
-				document.getElementById("zoom").src=immagine;
-			}*/
-			$(function cambiare(immagine)
-			{
-				$("#zoom").add(immagine);	
+				var  immagine = $(this).attr('src');	//recupero l' id della foto				
+				$("#zoom").attr('src', immagine);	//cambio della foto	
 			})
 		</script>
 	</center>
