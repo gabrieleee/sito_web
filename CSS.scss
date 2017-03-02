@@ -6,7 +6,7 @@ body.sfondo{
 #titolo{
 	padding:30px;
 	height:25%;
-	width:60%;
+	width:61%;
 	text-align:center;
 	background-image:url("immagini/music.jpg");
 	background-size: 100% 100%;
@@ -15,13 +15,11 @@ body.sfondo{
 #tabella{
 	color:white;
 	background-color:black;
-	width:62.5%;
-	padding:15px;
+	width:66%;
 }
 @mixin baseCelle($bgColor){
 	text-align:center;
-	padding:10px;
-	content:15px;
+	padding:15px;
 	width:130px;
 	&:hover{
 		background-color:#666666;
@@ -48,7 +46,7 @@ body.sfondo{
 	@include baseLink(white);
 }	
 #testo{
-	width:60%;
+	width:61%;
 	padding:30px;
 	background-color:#FFEECC;
 	border:{
@@ -60,7 +58,7 @@ body.sfondo{
 	background-color:black;
 	color:white;
 	padding:15px;
-	width:62.5%
+	width:63.5%
 }
 img.imm{
 	width:300px;
