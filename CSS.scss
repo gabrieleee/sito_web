@@ -84,20 +84,36 @@ img.imm{
 	height:100px;
 	border: 3px solid black;
 }
-table.musica{
+@mixin baseTable($num1,$num2){
 	border-collapse:collapse;
 	border: 3px solid black;
-	width:300px;
-	height:150px;	
+	width:$num2;
+	height:$num1;	
 	text-align:center;
+	background-color:white;
 }
+table.musica{
+	@include baseTable(200,320);
+}
+table.info{
+	@include baseTable(300,420);
+}	
 #link_strum{
 	@include baseLink(blue);
 	font-style:italic;
 }
-#agg{
+@mixin baseAgg(){
 	border: 3px solid black;
 	font-style:italic;
+	padding:10px;
+}
+#agg{
+	@include baseAgg();
+}
+#agg1{
+	@include baseAgg();
+	color:red;
+	font-weight:bold;
 }
 #indice{
 	text-align:center;
