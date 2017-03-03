@@ -128,9 +128,9 @@
 				alert("errore, l' anno non puo' essere minore di 1900 o maggiore di 2017");
 				tro=false;		
 			}
-			if(mese==04 || mese==06 || mese==09 || mese==11)
+			if(mese==4 || mese==6 || mese==9 || mese==11)
 			{
-				if(giorno<01 || giorno>30)
+				if(giorno<1 || giorno>30)
 				{
 					tro=false;
 					alert("errore, il mese "+mese+" non puo' avere meno di 1 giorno e piu' di 30 giorni");
@@ -138,7 +138,7 @@
 			}
 			else
 			{
-				if(giorno<01 || giorno>31)
+				if(giorno<1 || giorno>31)
 				{
 					tro=false;
 					alert("errore, il mese "+mese+" non puo' avere meno di 1 giorno e piu' di 31 giorni");
@@ -147,7 +147,7 @@
 			if(mese==2)
 				if(bisestile(anno)==false)
 				{
-					if(giorno<01 || giorno>28)
+					if(giorno<1 || giorno>28)
 					{
 						tro=false;
 						alert("l' anno "+anno+" non e' bisestile, quindi il mese di febbraio non puo' avere meno di 1 giorno e piu' di 28 giorni");
@@ -155,7 +155,7 @@
 				}
 				else
 				{
-					if(giorno<01 || giorno>29)
+					if(giorno<1 || giorno>29)
 					{
 						tro=false;
 						alert("l' anno"+anno+" e' bisestile, quindi il mese non puo' avere meno di 1 giorno e piu' di 29 giorni");
