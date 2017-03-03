@@ -1,47 +1,48 @@
-<html>
-	<head>
-		<title>
+<!doctype html system>
+<html>                  
+	<head>           
+		<title> 
 			Musica
 		</title>
 		<link href="CSS.css" rel="stylesheet" type="text/css">
 		<script language="javascript" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-	</head>
+	</head>         
 	<body class="sfondo">
-	<center>
+	<center>        
 		<div id="titolo">
-		</div>
+		</div>  
 		<div id="tabella">
 			<table>
 				<tr>
-					<td div id="celle"> <a div id="link" href="homepage.html"> homepage </a> </div> </div> </td>
-					<td div id="celle1"> <a div id="link1" href="galleria.html"> galleria </div> </div> </td>
-					<td div id="celle"> <a div id="link" href="strumenti.html"> strumenti </div> </div> </td>
-					<td div id="celle"> <a div id="link" href="form.html"> form </a> </div> </td>
-					<td div id="celle"> <a div id="link" href="info.html"> informazioni </div></div> </td>
+					<td class="celle"> <a class="link" href="homepage.html"> homepage </a> </td>
+					<td class="celle1"> <a class="link1" href="galleria.html"> galleria </a> </td> 
+					<td class="celle"> <a class="link" href="strumenti.html"> strumenti </a> </td>
+					<td class="celle"> <a class="link" href="form.html"> form </a> </td>
+					<td class="celle"> <a class="link" href="info.html"> informazioni </a> </td>
 				</tr>
 			</table>
-		</div>
+		</div> 
 		<div id="testo">
 		<h2> Strumenti musicali </h2>
 			<A NAME="imm"> </a>
-			<img id="zoom" src="immagini/strumenti.jpg">
+			<img id="zoom" src="immagini/strumenti.jpg" alt="zoom">
 			<br>
 			<hr>
 			<h3> Clicca sull' immagine per ingrandirla </h3>
 			<br>
-			<img class="f" id="foto" src="immagini/pianoforte.jpg"  title="Pianoforte">
-			<img class="f" id="foto" src="immagini/chitarra.jpg"  title="Chitarra">
-			<img class="f" id="foto" src="immagini/triangolo.jpg"  title="Triangolo">
-			<img class="f" id="foto" src="immagini/tromba.jpg"  title="Tromba">
-			<img class="f" id="foto" src="immagini/batteria.jpg"  title="Batteria">
-			<img class="f" id="foto" src="immagini/sax.jpg"  title="Sax">
-			<img class="f" id="foto" src="immagini/violino.jpg" title="Violino">
-		</div>
+			<img class="f" src="immagini/pianoforte.jpg"  title="Pianoforte" alt="Pianoforte">
+			<img class="f" src="immagini/chitarra.jpg"  title="Chitarra" alt="Chitarra">
+			<img class="f" src="immagini/triangolo.jpg"  title="Triangolo" alt="Triangolo">
+			<img class="f" src="immagini/tromba.jpg"  title="Tromba" alt="Tromba">
+			<img class="f" src="immagini/batteria.jpg"  title="Batteria" alt="Batteria">
+			<img class="f" src="immagini/sax.jpg"  title="Sassofono" alt="Sassofono">
+			<img class="f" src="immagini/violino.jpg" title="Violino" alt="Violino">
+		</div>       
 		<div id="copyright">
 			© 2017 sito web All Rights Reserved. Designed & Developed by Battani Gabriele
-		</div>
+		</div>  
 		<script type="text/javascript">
-
+			
 			$(".f").click(function()
 			{
 				var  immagine = $(this).attr('src');	//recupero l' id della foto				
@@ -51,3 +52,4 @@
 	</center>
 	</body>
 </html>
+
