@@ -170,10 +170,15 @@
 		if(tro==true)
 		{
 			var table=$("#demo");
+			var i=1;
 			table.append("<tr> <td class='agg'> Nome:  <td class='agg1'>"+nome);
 			table.append("<tr> <td class='agg'> Cognome: <td class='agg1'>"+cognome);
 			table.append("<tr> <td class='agg'> Data: <td class='agg1'>"+data);
 			table.append("<tr> <td class='agg'> Gruppo musicale preferito: <td class='agg1'>"+gruppo);
+			localStorage.setItem('nome ',nome); 
+			localStorage.setItem('cognome ',cognome);  
+			localStorage.setItem('data di nascita ',data); 
+			localStorage.setItem('gruppo musicale preferito ',gruppo); 
 		}
 	})        
 	$("#button").click(function()
