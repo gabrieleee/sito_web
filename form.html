@@ -25,7 +25,7 @@
 		<div id="testo">
 			<h2> Inserire i propri dati </h2>
 			<br>
-			<form name="richiesta" id="modulo">
+			<form name="richiesta" id="modulo" action="?">
 				<table>
 					<tr>	
 			 			<td class="form"> Nome: </td>
@@ -103,17 +103,17 @@
 		tro=true;
 		if ((nome =="") || (nome == "undefined"))
 		{
-			alert("Il campo Nome e' vuoto");
+			alert("Il campo 'Nome' e' vuoto");
 			tro=false;
 		}
 		if ((cognome=="") || (cognome == "undefined"))
 		{
-			alert("Il campo Cognome e' vuoto");
+			alert("Il campo 'Cognome' e' vuoto");
 			tro=false;
 		}
 		if((data=="") || (data == "undefined"))
 		{
-			alert("Il campo Data e' vuoto");
+			alert("Il campo 'Data' e' vuoto");
 			tro=false;
 		}
 		else if (!espressione.test(data))
@@ -170,7 +170,6 @@
 		if(tro==true)
 		{
 			var table=$("#demo");
-			var i=1;
 			table.append("<tr> <td class='agg'> Nome:  <td class='agg1'>"+nome);
 			table.append("<tr> <td class='agg'> Cognome: <td class='agg1'>"+cognome);
 			table.append("<tr> <td class='agg'> Data: <td class='agg1'>"+data);
@@ -186,7 +185,7 @@
 		var aggiunta=$("#aggiunta").val();
 		if((aggiunta=="") || (aggiunta=="undefined"))
 		{
-			alert("il campo add option e' vuoto");
+			alert("il campo 'add option' e' vuoto");
 		}
 		else{	
 			var x=$("#gruppo");
