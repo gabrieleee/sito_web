@@ -76,16 +76,18 @@
 						<td> <br> <hr> </td>
 					</tr>
 					<tr>
-						<td> <br> <input type="reset" value="Reset">
+						<td> <br> <input type="reset" value="Reset" id="reset">
 		 				<input type="button" value="Save" style="float:right" id="button2"></td>
 					</tr>
+				</table>
+				<table id="modifica">
 				</table>
 			</form>
 			<br>
 			<br>
 			<table id="demo" border="3" class="musica">	
 			</table>
-			<table id="modifica">
+			<table id="modifica" border="3">
 			</table>
 		</div>
 		<div id="copyright">
@@ -174,14 +176,18 @@
 		{
 			var barn = new Barn(localStorage);
 			var table=$("#demo");
+			var modifica=$("#modifica");
 			var array1=barn.smembers('set');
 			if(array1==null)
 			{
+				table.append("<tr> <td class='agg'> Tabella N. <td class='agg1'> 1");
 				table.append("<tr> <td class='agg'> Nome:  <td class='agg1'>"+nome);
 				table.append("<tr> <td class='agg'> Cognome: <td class='agg1'>"+cognome);
-				table.append("<tr> <td class='agg'> Data: <td class='agg1'>"+data);
+				table.append("<tr> <td class='agg'> Data di nascita: <td class='agg1'>"+data);
 				table.append("<tr> <td class='agg'> Gruppo musicale preferito: <td class='agg1'>"+gruppo); 
 				barn.sadd('set',nome+cognome+data+gruppo);
+				modifica.add("<br> <hr> <br> <tr> <td class='form'> Inserire il numero della tabella che si vuole modificare");
+				modifica.add("<tr> <td> <input type='text'  id='num' style='width: 85%'>");
 			}
 			else
 			{
@@ -195,12 +201,13 @@
 				}
 				if(tro==true)
 				{
-
-						table.append("<tr> <td class='agg'> Nome:  <td class='agg1'>"+nome);
-						table.append("<tr> <td class='agg'> Cognome: <td class='agg1'>"+cognome);
-						table.append("<tr> <td class='agg'> Data: <td class='agg1'>"+data);
-						table.append("<tr> <td class='agg'> Gruppo musicale preferito: <td class='agg1'>"+gruppo); 
-						barn.sadd('set',array2);
+					
+					table.append("<tr> <td class='agg'> Tabella N. <td class='agg1'>"+(array1.length+1));
+					table.append("<tr> <td class='agg'> Nome:  <td class='agg1'>"+nome);
+					table.append("<tr> <td class='agg'> Cognome: <td class='agg1'>"+cognome);
+					table.append("<tr> <td class='agg'> Data: <td class='agg1'>"+data);
+					table.append("<tr> <td class='agg'> Gruppo musicale preferito: <td class='agg1'>"+gruppo);
+					barn.sadd('set',array2);
 				}
 				else
 				{
@@ -243,7 +250,16 @@
 		{
 			return false;
 		}
-	}		
+	}
+	/*$("#reset").click(function()
+	{
+		var barn = new Barn(localStorage);
+		var array1=barn.smembers('set');
+		if(array1!==null)
+		{
+			barn.srem('set', array1);
+		}
+	})*/				
 	</script>
 	</body>
 </html>
