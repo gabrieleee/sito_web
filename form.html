@@ -32,20 +32,20 @@
 			 			<td class="form"> Nome: </td>
 					</tr>
 					<tr>
-			 			<td><input type="text" id="nome" style="width: 85%" ><br><br></td>
+			 			<td><input type="text" id="nome" style="width: 60%" ><br><br></td>
 					
 					</tr>
 					<tr>	
 		 				<td class="form"> Cognome: </td>
 					</tr>
 					<tr>
-		 				<td><input type="text" id="cognome" style="width: 85%" ><br><br></td>
+		 				<td><input type="text" id="cognome" style="width: 60%" ><br><br></td>
 					</tr>
 					<tr>	
 		 				<td class="form"> Data di nascita (gg/mm/aaaa): </td>
 					</tr>
 					<tr>
-		 				<td><input type="text" id="data" style="width: 85%"><br><br></td>
+		 				<td><input type="text" id="data" style="width: 60%"><br><br></td>
 					</tr>
 					<tr>
   						<td class="form"> Gruppo musicale preferito: <br> </td>
@@ -67,29 +67,63 @@
 						<td class="form"> Aggiunta opzione tendina: </td>
 					</tr>
 					<tr>
-						<td> <input type="text" id="aggiunta" style="width: 85%"></td>
+						<td> <input type="text" id="aggiunta" style="width: 60%"></td>
 					</tr>
 					<tr> 
 						<td> <input type="button" value="add option" id="button"> </td> 
 					</tr>
 					<tr>
-						<td> <br> <hr> </td>
+						<td> <br> <hr> <br> </td>
 					</tr>
 					<tr>
-						<td> <br> <input type="reset" value="Reset" id="reset">
+						<td> <br> <input type="reset" value="Reset">
 		 				<input type="button" value="Save" style="float:right" id="button2"></td>
 					</tr>
 				</table>
-				<table id="modifica">
-				</table>
-			</form>
 			<br>
 			<br>
-			<table id="demo" border="3" class="musica">	
-			</table>
-			<table id="modifica" border="3">
-			</table>
+			<hr>
+			<table id="dati"> 
+			<tr> 
+				<td class="form">N. tabella da modificare </td>
+			</tr>
+			<tr>
+				<td> <input type="text"  id="num"> </td>
+			</tr>
+			<tr>
+				<td class="form"> Nuovo nome: </td>
+			</tr>
+			<tr>
+				<td> <input type='text' id='nome1'> </td>
+			<tr>
+				<td class="form"> Nuovo cognome: </td>
+			</tr>
+			<tr>
+				<td> <input type='text' id='cognome1'> </td> 
+			</tr>
+			<tr>
+				<td class="form"> Nuova data: </td>
+			</tr>
+			<tr>
+				<td> <input type='text' id='data1'> </td>
+			</tr>
+			<tr> 
+				<td class="form"> Nuovo gruppo musicale: </td>
+			</tr>
+			<tr>
+				<td> <input type='text' id='gruppo1'> </td>
+			</tr>
+		</table>
+			<br>
+			<input type='button' value='modifica' id='cambio'> <input type="button" value="Elimina dati database" id="reset"> <input type="button" value="elenco dati" id="elenco"> <br> <hr> <br>
+			<br>			
+			<p id="elenco_dati">
+			</p>			
+			<br>
+			<p id="demo">	
+			</p>
 		</div>
+		</form>
 		<div id="copyright">
 			© 2017 sito web All Rights Reserved. Designed & Developed by Battani Gabriele
 		</div>
@@ -101,11 +135,54 @@
 		var cognome=$("#cognome").val();
 		var data=$("#data").val();
 		var gruppo=$("#gruppo").val();
+		var tro=controllo(nome,cognome,data,gruppo);
+		if(tro==true)
+		{
+			var barn = new Barn(localStorage);
+			var table=$("#demo");
+			var array1=barn.smembers('set');
+			if(array1==null)
+			{
+				table.append("<table border='3' class='musica'> <tr> <td class='agg'> Tabella N. <td class='agg1'> 1 <tr> <td class='agg'> Nome:  <td class='agg1'>"+nome+"<tr> <td class='agg'> Cognome: <td class='agg1'>"+cognome+"<tr> <td class='agg'> Data di nascita: <td class='agg1'>"+data+"<tr> <td class='agg'> Gruppo musicale preferito: <td class='agg1'>"+gruppo+"</table>");				barn.sadd('set',nome+" "+cognome+" "+data+" "+gruppo);
+			}
+			else
+			{
+				var array2=nome+" "+cognome+" "+data+" "+gruppo;
+				for(i=0;i<array1.length;i=i+1)
+					if(array1[i]==array2)
+						tro=false;
+					else
+						tro=true;
+				if(tro==true)
+				{
+					table.append("<br> <table border='3' class='musica'> <tr> <td class='agg'> Tabella N. <td class='agg1'>"+(array1.length+1)+"<tr> <td class='agg'> Nome:  <td class='agg1'>"+nome+"<tr> <td class='agg'> Cognome: <td class='agg1'>"+cognome+"<tr> <td class='agg'> Data di nascita: <td class='agg1'>"+data+"<tr> <td class='agg'> Gruppo musicale preferito: <td class='agg1'>"+gruppo+"</table>");	
+					barn.sadd('set',nome+" "+cognome+" "+data+" "+gruppo);
+				}
+				else
+					alert("errore, non si possono' inserire due tabelle uguali");
+			}					
+		}
+	})        
+	$("#button").click(function()
+	{
+		var aggiunta=$("#aggiunta").val();
+		if((aggiunta=="") || (aggiunta=="undefined"))
+		{
+			alert("il campo 'add option' e' vuoto");
+		}
+		else{	
+			var x=$("#gruppo");
+			x.append("<option>"+aggiunta);
+			alert("il gruppo musicale e' stato aggiunto alle opzioni");					
+		}	
+	})
+	function controllo(nome,cognome,data,gruppo)
+	{
 		var espressione = /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/;
 		var giorno=data[0]+data[1];
 		var mese=data[3]+data[4];
 		var anno=data[6]+data[7]+data[8]+data[9];
-		tro=true;
+		var tro=true;
 		if ((nome =="") || (nome == "undefined"))
 		{
 			alert("Il campo 'Nome' e' vuoto");
@@ -163,7 +240,7 @@
 					if(giorno<1 || giorno>29)
 					{
 						tro=false;
-						alert("l' anno"+anno+" e' bisestile, quindi il mese non puo' avere meno di 1 giorno e piu' di 29 giorni");
+						alert("l' anno "+anno+" e' bisestile, quindi il mese non puo' avere meno di 1 giorno e piu' di 29 giorni");
 					}
 				}
 		}	
@@ -172,64 +249,8 @@
 			alert("non ha selezionato nessun gruppo musicale preferito");
 			tro=false;
 		}
-		if(tro==true)
-		{
-			var barn = new Barn(localStorage);
-			var table=$("#demo");
-			var modifica=$("#modifica");
-			var array1=barn.smembers('set');
-			if(array1==null)
-			{
-				table.append("<tr> <td class='agg'> Tabella N. <td class='agg1'> 1");
-				table.append("<tr> <td class='agg'> Nome:  <td class='agg1'>"+nome);
-				table.append("<tr> <td class='agg'> Cognome: <td class='agg1'>"+cognome);
-				table.append("<tr> <td class='agg'> Data di nascita: <td class='agg1'>"+data);
-				table.append("<tr> <td class='agg'> Gruppo musicale preferito: <td class='agg1'>"+gruppo); 
-				barn.sadd('set',nome+cognome+data+gruppo);
-				modifica.add("<br> <hr> <br> <tr> <td class='form'> Inserire il numero della tabella che si vuole modificare");
-				modifica.add("<tr> <td> <input type='text'  id='num' style='width: 85%'>");
-			}
-			else
-			{
-				var array2=nome+cognome+data+gruppo;
-				for(i=0;i<array1.length;i=i+1)
-				{
-					if(array1[i]==array2)
-					{
-						tro=false;
-					}
-				}
-				if(tro==true)
-				{
-					
-					table.append("<tr> <td class='agg'> Tabella N. <td class='agg1'>"+(array1.length+1));
-					table.append("<tr> <td class='agg'> Nome:  <td class='agg1'>"+nome);
-					table.append("<tr> <td class='agg'> Cognome: <td class='agg1'>"+cognome);
-					table.append("<tr> <td class='agg'> Data: <td class='agg1'>"+data);
-					table.append("<tr> <td class='agg'> Gruppo musicale preferito: <td class='agg1'>"+gruppo);
-					barn.sadd('set',array2);
-				}
-				else
-				{
-					alert("errore, non si possono' inserire due tabelle uguali");
-				}
-			}					
-		}
-	
-	})        
-	$("#button").click(function()
-	{
-		var aggiunta=$("#aggiunta").val();
-		if((aggiunta=="") || (aggiunta=="undefined"))
-		{
-			alert("il campo 'add option' e' vuoto");
-		}
-		else{	
-			var x=$("#gruppo");
-			x.append("<option>"+aggiunta);
-			alert("il gruppo musicale e' stato aggiunto alle opzioni");					
-		}	
-	})
+		return tro;
+	}	
 	function bisestile(year)
 	{
 		if(year%4==0)
@@ -251,16 +272,74 @@
 			return false;
 		}
 	}
-	/*$("#reset").click(function()
+	$("#cambio").click(function()
+	{		
+		var barn = new Barn(localStorage);
+		var array1=barn.smembers('set');		
+		var table=$("#demo");
+		var n=$("#num").val();
+		if(array1==null)
+			alert("nel database non e' presente alcun dato");
+		else if((n=="") || (n=="undefined"))
+			alert("errore, il campo 'numero tabella' non deve essere vuoto");
+		else if(n>array1.length)
+			alert("non esiste la tabella N. "+n);
+		else
+		{
+			var nome=$("#nome1").val();
+			var cognome=$("#cognome1").val();
+			var data=$("#data1").val();
+			var gruppo=$("#gruppo1").val();
+			var tro=controllo(nome,cognome,data,gruppo);
+			if(tro==true)
+			{
+				var array1=barn.smembers('set');
+				array2=nome+" "+cognome+" "+data+" "+gruppo;
+				for(i=0;i<array1.length;i=i+1)
+					if(array1[i]==array2)
+						var tro=false;
+					else
+						var tro=true;
+				if(tro==true)
+				{
+					barn.del('set');
+					array1[n-1]=array2;
+					for(i=0;i<array1.length;i=i+1)
+						barn.sadd('set',array1[i]);
+					table.append("<br> <table border='3' class='musica'> <tr> <td class='agg'> Tabella modificata N. <td class='agg1'>"+n+"<tr> <td class='agg'> Nome:  <td class='agg1'>"+nome+"<tr> <td class='agg'> Cognome: <td class='agg1'>"+cognome+"<tr> <td class='agg'> Data di nascita: <td class='agg1'>"+data+"<tr> <td class='agg'> Gruppo musicale preferito: <td class='agg1'>"+gruppo+"</table>");
+					alert("modifica effettuata");
+				}
+				else
+				{
+					alert("errore, non si possono' inserire due tabelle uguali");
+				}
+			}
+			else
+			{
+				alert("non e' stata effettuata alcuna modifica");
+			}
+		}
+	})
+	$("#reset").click(function()
 	{
 		var barn = new Barn(localStorage);
+		barn.del('set');	
+	})
+	$("#elenco").click(function()
+	{
+		var elenco=$("#elenco_dati");
+		var barn = new Barn(localStorage);
 		var array1=barn.smembers('set');
-		if(array1!==null)
+		if(array1==null)
 		{
-			barn.srem('set', array1);
+			alert("nel database non e' presente alcun dato");
 		}
-	})*/				
+		else
+		{
+			for(i=0;i<array1.length;i=i+1)
+				elenco.append("<br>Dato N."+(i+1)+"<br>"+array1[i]);
+		}	
+	})								
 	</script>
 	</body>
 </html>
-
