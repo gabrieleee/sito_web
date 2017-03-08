@@ -77,7 +77,7 @@
 					</tr>
 					<tr>
 						<td> <br> <input type="reset" value="Reset">
-		 				<input type="button" value="Save" style="float:right" id="button2"></td>
+		 				<input type="button" value="Salva" style="float:right" id="button2"></td>
 					</tr>
 				</table>
 			<br>
@@ -280,7 +280,7 @@
 			alert("errore, il campo 'numero tabella' non deve essere vuoto");
 		if(array1==null)
 			alert("nel database non e' presente alcun dato");
-		else if(n>array1.length)
+		else if(n>array1.length || n<=0)
 			alert("non esiste la tabella N. "+n);
 		else
 		{
