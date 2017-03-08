@@ -6,7 +6,7 @@
 		</title>
 		<link href="CSS.css" rel="stylesheet" type="text/css">
 		<script src="https://code.jquery.com/jquery-3.1.1.js" type="text/javascript"> </script>	
-		<script src="barn.js">	</script>
+		<script src="barn.js"  type="text/javascript">	</script>
 	</head>
 	<body class="sfondo">
 	<center>
@@ -122,8 +122,8 @@
 			<br>
 			<p id="demo">	
 			</p>
+                </form>
 		</div>
-		</form>
 		<div id="copyright">
 			© 2017 sito web All Rights Reserved. Designed & Developed by Battani Gabriele
 		</div>
@@ -143,7 +143,7 @@
 			var array1=barn.smembers('set');
 			if(array1==null)
 			{
-				table.append("<table border='3' class='musica'> <tr> <td class='agg'> Tabella N. <td class='agg1'> 1 <tr> <td class='agg'> Nome:  <td class='agg1'>"+nome+"<tr> <td class='agg'> Cognome: <td class='agg1'>"+cognome+"<tr> <td class='agg'> Data di nascita: <td class='agg1'>"+data+"<tr> <td class='agg'> Gruppo musicale preferito: <td class='agg1'>"+gruppo+"</table>");				barn.sadd('set',nome+" "+cognome+" "+data+" "+gruppo);
+				table.append("<table border='3' class='musica'> <tr> <td class='agg'> Tabella N. <td class='agg1'> 1 <tr> <td class='agg'> Nome:  <td class='agg1'>"+nome+"<tr> <td class='agg'> Cognome: <td class='agg1'>"+cognome+"<tr> <td class='agg'> Data di nascita: <td class='agg1'>"+data+"<tr> <td class='agg'> Gruppo musicale preferito: <td class='agg1'>"+gruppo);				barn.sadd('set',nome+" "+cognome+" "+data+" "+gruppo);
 			}
 			else
 			{
@@ -151,12 +151,10 @@
 				for(i=0;i<array1.length;i=i+1)
 					if(array1[i]==array2)
 						tro=false;
-					else
-						tro=true;
 				if(tro==true)
 				{
-					table.append("<br> <table border='3' class='musica'> <tr> <td class='agg'> Tabella N. <td class='agg1'>"+(array1.length+1)+"<tr> <td class='agg'> Nome:  <td class='agg1'>"+nome+"<tr> <td class='agg'> Cognome: <td class='agg1'>"+cognome+"<tr> <td class='agg'> Data di nascita: <td class='agg1'>"+data+"<tr> <td class='agg'> Gruppo musicale preferito: <td class='agg1'>"+gruppo+"</table>");	
-					barn.sadd('set',nome+" "+cognome+" "+data+" "+gruppo);
+					table.append("<br> <table border='3' class='musica'> <tr> <td class='agg'> Tabella N. <td class='agg1'>"+(array1.length+1)+"<tr> <td class='agg'> Nome:  <td class='agg1'>"+nome+"<tr> <td class='agg'> Cognome: <td class='agg1'>"+cognome+"<tr> <td class='agg'> Data di nascita: <td class='agg1'>"+data+"<tr> <td class='agg'> Gruppo musicale preferito: <td class='agg1'>"+gruppo);	
+					barn.sadd('set',array2);
 				}
 				else
 					alert("errore, non si possono' inserire due tabelle uguali");
@@ -278,10 +276,10 @@
 		var array1=barn.smembers('set');		
 		var table=$("#demo");
 		var n=$("#num").val();
+		if((n=="") || (n=="undefined"))
+			alert("errore, il campo 'numero tabella' non deve essere vuoto");
 		if(array1==null)
 			alert("nel database non e' presente alcun dato");
-		else if((n=="") || (n=="undefined"))
-			alert("errore, il campo 'numero tabella' non deve essere vuoto");
 		else if(n>array1.length)
 			alert("non esiste la tabella N. "+n);
 		else
@@ -293,26 +291,21 @@
 			var tro=controllo(nome,cognome,data,gruppo);
 			if(tro==true)
 			{
-				var array1=barn.smembers('set');
-				array2=nome+" "+cognome+" "+data+" "+gruppo;
+				var array2=nome+" "+cognome+" "+data+" "+gruppo;
 				for(i=0;i<array1.length;i=i+1)
 					if(array1[i]==array2)
 						var tro=false;
-					else
-						var tro=true;
 				if(tro==true)
 				{
 					barn.del('set');
 					array1[n-1]=array2;
 					for(i=0;i<array1.length;i=i+1)
 						barn.sadd('set',array1[i]);
-					table.append("<br> <table border='3' class='musica'> <tr> <td class='agg'> Tabella modificata N. <td class='agg1'>"+n+"<tr> <td class='agg'> Nome:  <td class='agg1'>"+nome+"<tr> <td class='agg'> Cognome: <td class='agg1'>"+cognome+"<tr> <td class='agg'> Data di nascita: <td class='agg1'>"+data+"<tr> <td class='agg'> Gruppo musicale preferito: <td class='agg1'>"+gruppo+"</table>");
+					table.append("<br> <table border='3' class='musica'> <tr> <td class='agg'> Tabella modificata N. <td class='agg1'>"+n+"<tr> <td class='agg'> Nome:  <td class='agg1'>"+nome+"<tr> <td class='agg'> Cognome: <td class='agg1'>"+cognome+"<tr> <td class='agg'> Data di nascita: <td class='agg1'>"+data+"<tr> <td class='agg'> Gruppo musicale preferito: <td class='agg1'>"+gruppo);
 					alert("modifica effettuata");
 				}
 				else
-				{
 					alert("errore, non si possono' inserire due tabelle uguali");
-				}
 			}
 			else
 			{
@@ -337,9 +330,11 @@
 		else
 		{
 			for(i=0;i<array1.length;i=i+1)
-				elenco.append("<br>Dato N."+(i+1)+"<br>"+array1[i]);
+				elenco.append("<h4> Dato N."+(i+1)+" "+array1[i]+"<br>");
+			elenco.append("<br> <hr> <br>");
 		}	
 	})								
 	</script>
 	</body>
 </html>
+
