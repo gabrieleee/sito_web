@@ -115,7 +115,7 @@
 				</tr>
 			</table>
 			<br>
-			<input type='button' value='modifica' id='cambio'> <input type="button" value="Elimina dati database" id="reset"> <input type="button" value="elenco dati" id="elenco"> <br> <hr> <br>
+			<input type='button' value='modifica' id='cambio'> <input type="button" value="Elimina dati" id="reset"> <input type="button" value="elenco dati" id="elenco"> <input type="button" value="elimina tabella" id="elimina"><br> <hr> <br>
 			<br>			
 			<p id="elenco_dati">
 			</p>			
@@ -143,7 +143,9 @@
 			var array1=barn.smembers('set');
 			if(array1==null)
 			{
-				table.append("<table border='3' class='musica'> <tr> <td class='agg'> Tabella N. <td class='agg1'> 1 <tr> <td class='agg'> Nome:  <td class='agg1'>"+nome+"<tr> <td class='agg'> Cognome: <td class='agg1'>"+cognome+"<tr> <td class='agg'> Data di nascita: <td class='agg1'>"+data+"<tr> <td class='agg'> Gruppo musicale preferito: <td class='agg1'>"+gruppo);				barn.sadd('set',nome+" "+cognome+" "+data+" "+gruppo);
+				table.append("<table border='3' class='musica'> <tr> <td class='agg'> Tabella N. <td class='agg1'> 1 <tr> <td class='agg'> Nome:  <td class='agg1'>"+nome+"<tr> <td class='agg'> Cognome: <td class='agg1'>"+cognome+"<tr> <td class='agg'> Data di nascita: <td class='agg1'>"+data+"<tr> <td class='agg'> Gruppo musicale preferito: <td class='agg1'>"+gruppo);				
+				var array2=nome+" "+cognome+" "+data+" "+gruppo;
+				barn.sadd('set',array2);
 			}
 			else
 			{
@@ -278,7 +280,7 @@
 		var n=$("#num").val();
 		if((n=="") || (n=="undefined"))
 			alert("errore, il campo 'numero tabella' non deve essere vuoto");
-		if(array1==null)
+		else if(array1==null)
 			alert("nel database non e' presente alcun dato");
 		else if(n>array1.length || n<=0)
 			alert("non esiste la tabella N. "+n);
@@ -308,9 +310,7 @@
 					alert("errore, non si possono' inserire due tabelle uguali");
 			}
 			else
-			{
 				alert("non e' stata effettuata alcuna modifica");
-			}
 		}
 	})
 	$("#reset").click(function()
@@ -333,7 +333,22 @@
 				elenco.append("<h4> Dato N."+(i+1)+" "+array1[i]+"<br>");
 			elenco.append("<br> <hr> <br>");
 		}	
-	})	      															
+	})
+	$("#elimina").click(function()
+	{
+		var barn = new Barn(localStorage);
+		var n=$("#num").val();
+		var array=barn.smembers('set');
+		if((n=="") || (n=="undefined"))
+			alert("errore, il campo 'numero tabella' non deve essere vuoto");
+		else if(array==null)
+			alert("nel database non e' presente alcun dato");
+		else if(n>array.length || n<=0)
+			alert("non esiste la tabella N. "+n);
+		else
+			barn.srem('set',array[n-1])
+
+	})		    
 	</script>
 	</body>
 </html>		
